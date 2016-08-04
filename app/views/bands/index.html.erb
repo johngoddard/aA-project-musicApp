@@ -1,0 +1,10 @@
+<h1>All Bands</h1>
+
+<ul>
+  <%= render @bands %>
+</ul>
+
+
+<%= button_to("Add Band", new_band_url, method: :get) %>
+<br>
+<%= link_to("View all Albums >>", albums_url) %>

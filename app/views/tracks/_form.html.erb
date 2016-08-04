@@ -1,0 +1,28 @@
+<%= form_helper(action, method) %>
+  <label>Album: </label>
+  <select name="track[album_id]">
+    <% albums.each do |a|%>
+    <option value="<%= a.id %>"
+            <%= "Selected" if a == album %>>
+      <%= a.title %>
+    </option>
+    <% end %>
+  </select>
+  <br>
+  <label>Track type: </label>
+  <input type="radio"
+         name="track[track_type]"
+         value="regular" <%= "checked" if track.try(:track_type) == "regular" %>>
+         Regular
+  <input type="radio"
+         name="track[track_type]"
+         value="bonus"<%= "checked" if track.try(:track_type) == "bonus" %>>
+         Bonus
+  <br>
+  <br>
+  <label>Title: <input type="text" name="track[title]" value="<%= track.try(:title) %> "></label>
+  <br>
+  <label>Lryics: <textarea name="track[lyrics]" rows="8" cols="80"><%= @track.try(:lyrics) %></textarea></label>
+  <br>
+  <input type="submit" value="<%= button_text %>">
+</label>

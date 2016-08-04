@@ -1,0 +1,5 @@
+<%= form_helper(action, method) %>
+  <label>Name: <input type="text" name="band[name]" value="<%= band.try(:name) %>"></label>
+  <br> <br>
+  <input type="submit" value="<%= button_text %>">
+</form>

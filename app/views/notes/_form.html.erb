@@ -1,0 +1,7 @@
+<h4>Add a new note: </h4>
+<%= form_helper(track_notes_url(track), "POST") %>
+  <textarea name="note[body]" rows="8" cols="80"></textarea>
+  <input type="hidden" name="note[track_id]" value="<%= @track_id %>">
+  <br>
+  <input type="Submit" value="Add Note">
+</form>

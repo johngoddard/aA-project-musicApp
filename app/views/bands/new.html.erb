@@ -1,0 +1,7 @@
+<h1>Create a new band</h1>
+<%= render "form", band: @band,
+                   button_text: "Create Band",
+                   action: bands_url,
+                   method: 'POST' %>
+<br>
+<%= link_to("<< Back to all bands", bands_url) %>

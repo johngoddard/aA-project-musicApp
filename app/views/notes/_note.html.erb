@@ -1,0 +1,7 @@
+<li>Posted by <%= note.user.email %>
+  (<%= nice_time(note.created_at) %>): <%= note.body %>
+
+  <% if note.user_id == current_user.id %>
+    <%= button_to("Delete", note_url(note), method: :delete) %>
+  <% end %>
+</li>

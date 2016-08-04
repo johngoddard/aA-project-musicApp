@@ -1,0 +1,18 @@
+<%= form_helper(action, method) %>
+  <label>Band:
+    <select name="album[band_id]">
+      <% bands.each do |b|%>
+        <option value="<%= b.id %>" <%= "Selected" if b == band %>><%= b.name %></option>
+      <% end %>
+    </select>
+  </label>
+  <br>
+  <label>Title: <input type="text" name="album[title]" value="<%= album.try(:title)%>"></label>
+  <br>
+  <label>Album type: </label>
+  <input type="radio" name="album[album_type]" value="studio" <%= "checked" if album.try(:album_type) == "studio" %>>Studio
+  <input type="radio" name="album[album_type]" value="live"<%= "checked" if album.try(:album_type) == "live" %>>Live
+  <br>
+  <input type="submit" value="<%= button_text %>">
+
+</form>

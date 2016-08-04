@@ -1,0 +1,25 @@
+<h1><%= @track.title %></h1>
+
+<ul>
+  <li>Artist: <%= @track.band.name %> </li>
+  <li>Album: <%=@track.album.title  %></li>
+  <li>Track type: <%=@track.track_type  %></li>
+  <li>Lyrics: <%= ugly_lryics(@track.lyrics)  %></li>
+</ul>
+
+<% if @track.notes.length > 0 %>
+  <h4>Notes: </h4>
+  <ul>
+    <%= render(@track.notes) %>
+  </ul>
+<% end %>
+
+
+<%= render 'notes/form', track: @track%>
+
+<br>
+<%= button_to("Edit Track", edit_track_url(@track), method: :get) %>
+<br>
+<%= button_to("Delete Track", track_url(@track), method: :delete) %>
+<br>
+<%= link_to("<< Back to album", album_url(@track.album)) %>

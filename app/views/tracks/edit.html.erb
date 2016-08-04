@@ -1,0 +1,8 @@
+<h1>Edit track</h1>
+<%= render 'form', track: @track,
+                   album: @track.album,
+                   albums: @albums,
+                   button_text: "Submit Changes",
+                   action: track_url(@track), method: 'PATCH' %>
+<br>
+<%= link_to("<< Back to track", track_url(@track)) %>

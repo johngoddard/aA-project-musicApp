@@ -1,0 +1,7 @@
+<h1>Edit Band</h1>
+<%= render "form", band: @band,
+                   button_text: "Submit Changes",
+                   action: band_url(@band),
+                   method: "PATCH" %>
+<br>
+<%= link_to("<< Back to band", band_url(@band)) %>

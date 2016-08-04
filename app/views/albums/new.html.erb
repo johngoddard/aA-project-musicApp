@@ -1,0 +1,9 @@
+<h1>Create a new album</h1>
+
+<%= render 'form', band: @band,
+                   bands: @bands,
+                   album: @album,
+                   action: albums_url,
+                   method: 'POST',
+                   button_text: "Create Album" %>
+<%= link_to("<< Back to band", band_url(@band)) %>
