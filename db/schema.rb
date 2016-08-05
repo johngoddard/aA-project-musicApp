@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804223307) do
+ActiveRecord::Schema.define(version: 20160805161334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,13 +57,13 @@ ActiveRecord::Schema.define(version: 20160804223307) do
   add_index "tracks", ["album_id"], name: "index_tracks_on_album_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                           null: false
-    t.string   "session_token",                   null: false
-    t.string   "password_digest",                 null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "activated",        default: true
+    t.string   "email",                            null: false
+    t.string   "session_token",                    null: false
+    t.string   "password_digest",                  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "activation_token", default: ""
+    t.boolean  "activated",        default: false
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree

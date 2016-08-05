@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
-  validates :email, :session_token, :password_digest, presence: true
-  validates :email, :session_token, uniqueness: true
+  validates :email, :session_token, :password_digest, :activation_token, presence: true
+  validates :email, :session_token,:activation_token, uniqueness: true
   validates :password, length:{minimum: 6, allow_nil: true}
 
   after_initialize :ensure_session_token
-  after_initialize :ensure_not_activated
-  after_initialize :ensure_activation_token
+  after_initialize :set_activation_token
 
   attr_reader :password
 
@@ -45,17 +44,17 @@ class User < ActiveRecord::Base
     self.activated
   end
 
+  def activate!
+    self.update_attributes(activated: true)
+  end
+
   private
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
   end
 
-  def ensure_not_activated
-    self.activated = false if self.activated != true
-  end
-
-  def ensure_activation_token
+  def set_activation_token
     self.activation_token = User.generate_session_token if self.activation_token == ""
   end
 end

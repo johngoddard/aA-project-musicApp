@@ -6,9 +6,8 @@ class UsersController < ApplicationController
   end
 
   def activate
-    if @user.activation_token = params[:activation_token]
-      @user.activated = true
-      @user.save
+    if @user.activation_token == params[:activation_token]
+      @user.activate!
       login!(@user)
       redirect_to bands_url
     else
@@ -29,7 +28,6 @@ class UsersController < ApplicationController
   end
 
   def show
-
   end
 
   private
