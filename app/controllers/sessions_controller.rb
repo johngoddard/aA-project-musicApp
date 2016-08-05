@@ -7,9 +7,13 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(session_params[:email],
                                      session_params[:password])
 
-    if @user
+    # fail
+    if @user && @user.activated?
       login!(@user)
       redirect_to bands_url
+    elsif @user
+      flash.now[:errors] = ["User is not activated! Please check your email"]
+      render :new
     else
       flash.now[:errors] = ["User does not exist"]
       render :new

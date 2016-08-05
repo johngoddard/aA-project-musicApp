@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_current_user!
-    redirect_to new_session_url unless self.current_user
+    redirect_to new_session_url unless self.current_user && current_user.activated?
   end
 
   def logged_in?

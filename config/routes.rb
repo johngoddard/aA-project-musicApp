@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show] do
+    get 'activate', on: :member
+  end
   resource :session, only: [:create, :new, :destroy]
 
   resources :bands do

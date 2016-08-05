@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   validates :password, length:{minimum: 6, allow_nil: true}
 
   after_initialize :ensure_session_token
+  after_initialize :ensure_not_activated
+  after_initialize :ensure_activation_token
 
   attr_reader :password
 
@@ -16,6 +18,12 @@ class User < ActiveRecord::Base
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)
   end
+
+  def self.activate_user(user)
+    user.activated = true
+    user.save!
+  end
+
 
   def password=(pw)
     @password = pw
@@ -33,9 +41,21 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
+  def activated?
+    self.activated
+  end
+
   private
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+
+  def ensure_not_activated
+    self.activated = false if self.activated != true
+  end
+
+  def ensure_activation_token
+    self.activation_token = User.generate_session_token if self.activation_token == ""
   end
 end
